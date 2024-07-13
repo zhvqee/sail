@@ -50,5 +50,10 @@ public class ThreadPoolMonitorManager {
 
     }
 
+    public static void shutdown() {
+        scheduledExecutorService.shutdown();
+        monitorList.clear();
+    }
+
 
 }
