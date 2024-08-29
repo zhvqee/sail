@@ -5,6 +5,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/thread-monitor/pom.xml" />
+        <option value="$PROJECT_DIR$/sliding-window/pom.xml" />
+        <option value="$PROJECT_DIR$/expression-engine/pom.xml" />
+        <option value="$PROJECT_DIR$/jit-log/pom.xml" />
+        <option value="$PROJECT_DIR$/byte-buddy/pom.xml" />
       </list>
     </option>
   </component>
