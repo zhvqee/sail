@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/expression-engine/pom.xml" />
         <option value="$PROJECT_DIR$/jit-log/pom.xml" />
         <option value="$PROJECT_DIR$/byte-buddy/pom.xml" />
+        <option value="$PROJECT_DIR$/algorithm/pom.xml" />
       </list>
     </option>
   </component>

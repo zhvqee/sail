@@ -1,4 +1,4 @@
-package org.example;
+package org.nums;
 
 public class Main {
 

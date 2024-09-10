@@ -11,6 +11,7 @@
         <module name="byte-buddy" />
         <module name="thread-monitor" />
         <module name="jit-log" />
+        <module name="algorithm" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
