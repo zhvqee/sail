@@ -1,5 +1,14 @@
 package org.nums;
 
+//-XX:+UnlockDiagnosticVMOptions
+// -XX:+PrintCompilation
+// -XX:+PrintInlining
+// -XX:+PrintCodeCache
+// -XX:+PrintCodeCacheOnCompilation
+// -XX:+TraceClassLoading
+// -XX:+LogCompilation
+// -XX:LogFile=LogPath
+
 public class Main {
 
     public static int add(int a, int b) {
@@ -7,16 +16,16 @@ public class Main {
     }
 
     //-XX:+PrintCompilation
-
     //-XX:+PrintCodeCache
     //-XX:InitialCodeCacheSize
     //-XX:ReservedCodeCacheSize
     //-XX:CodeCacheExpansionSize
+    //-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/Users/user/Dowloads/workspace/sail/jit-log/jit.log
     public static void main(String[] args) throws InterruptedException {
         //method1();
         System.out.println(System.currentTimeMillis());
 
-        for (int i = 0; i < 50000; i++) {
+        for (int i = 0; i < 500000; i++) {
             MyInterface myInterface;
             if (i < 45000) {
                 // The first 45.000 executions will enter here
