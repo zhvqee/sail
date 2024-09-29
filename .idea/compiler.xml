@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sliding-window" />
-        <module name="expression-engine" />
-        <module name="byte-buddy" />
+        <module name="flink" />
         <module name="thread-monitor" />
         <module name="jit-log" />
+        <module name="expression-engine" />
+        <module name="byte-buddy" />
         <module name="algorithm" />
       </profile>
     </annotationProcessing>
