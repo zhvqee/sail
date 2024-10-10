@@ -1,0 +1,15 @@
+let users =into(seq.list(),inputResult);
+
+let names =map(users,lambda(user)->user.name end );
+
+println("extract name :"+names);
+
+let names2 =filter(users,lambda(user)->user.name =="xiao ming" end);
+
+println("selected xiaoming :"+names2);
+
+
+let ageSum =reduce(users,lambda(u,user)->u+user.age end,0);
+println("all age :"+ageSum);
+
+return ageSum;

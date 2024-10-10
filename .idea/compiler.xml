@@ -9,6 +9,7 @@
         <module name="sliding-window" />
         <module name="flink" />
         <module name="thread-monitor" />
+        <module name="aviator-demo" />
         <module name="jit-log" />
         <module name="expression-engine" />
         <module name="byte-buddy" />
