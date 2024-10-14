@@ -1,58 +1,49 @@
 package org.tree;
 
-import java.util.LinkedList;
+import java.util.TreeSet;
 
-public class LCR058 {
+public class LCR058_2 {
 
     public static class MyCalendar {
 
-        class Node {
-            public int start;
-            public int end;
 
-            public Node(int start, int end) {
-                this.start = start;
-                this.end = end;
-            }
-
-        }
-
-        public LinkedList<Node> result = new LinkedList<>();
+        private TreeSet<int[]> tree = new TreeSet<>((a, b) -> a[0] - b[0]);
 
         public MyCalendar() {
 
         }
 
-
-
         public boolean book(int start, int end) {
-            int insertIndex = 0;
-            Node n2 = new Node(start, end);
-            for (int i = 0; i < result.size(); i++) {
-                Node n1 = result.get(i);
-                if (intersection(n1, n2)) {
-                    return false;
-                }
-                if (i == 0 && n2.end <= n1.end) {
-                    break;
-                }
-                insertIndex = i + 1;
-               /* if (i != result.size() - 1) {
-                    Node after = result.get(i + 1);
-                    if (after.start > n2.end) {
-                        insertIndex = i + 1;
-                        break;
-                    }
-                }*/
+            if (tree.isEmpty()) {
+                tree.add(new int[]{start, end});
+                return true;
             }
-            result.add(insertIndex, n2);
-            return true;
+            int[] tmp = {start, 0};
+            int[] right = tree.ceiling(tmp);
+            if (right == null) {
+                int[] lower = tree.lower(tmp);
+                if (lower == null || lower[1] <= start) {
+                    tree.add(new int[]{start, end});
+                    return true;
+                }
+            } else {
+                int[] lower = tree.lower(tmp);
+                if (lower == null) {
+                    if (end <= right[0]) {
+                        tree.add(new int[]{start, end});
+                        return true;
+                    }
+                } else {
+                    if (lower[1] <= start && end <= right[0]) {
+                        tree.add(new int[]{start, end});
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
 
-        public boolean intersection(Node n1, Node n2) {
-            return !(n2.end <= n1.start || n2.start >= n1.end);
-        }
     }
 
     public static void main(String[] args) {
@@ -83,7 +74,6 @@ public class LCR058 {
         }
 
         //[true,false,true,true,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
-        //[true,false,true,true,false,true,false,true,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,
         //[true,false,true,true,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
     }
 

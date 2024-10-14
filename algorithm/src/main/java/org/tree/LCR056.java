@@ -1,8 +1,7 @@
 package org.tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LCR056 {
 
@@ -25,44 +24,26 @@ public class LCR056 {
         }
     }
 
-    class BSTIterator {
+    private Boolean isFind = false;
 
-        private List<TreeNode> queue = new ArrayList<>();
-        private int next = 0;
-
-        public BSTIterator(TreeNode root) {
-            convertBST(root);
-        }
-
-        public int next() {
-            return queue.get(next++).val;
-        }
-
-        public boolean hasNext() {
-            return next < queue.size();
-        }
-
-        private TreeNode convertBST(TreeNode root) {
-            if (root == null) {
-                return null;
-            }
-            TreeNode head = root;
-
-            Stack<TreeNode> stack = new Stack<>();
-            while (!stack.isEmpty() || root != null) {
-                while (root != null) {
-                    stack.push(root);
-                    root = root.left;
-                }
-                if (!stack.isEmpty()) {
-                    TreeNode pop = stack.pop();
-                    queue.add(pop);
-                    root = pop.right;
-                }
-            }
-            return head;
-        }
+    public boolean findTarget(TreeNode root, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        orderSave(root, map, k);
+        return isFind;
     }
 
+    private void orderSave(TreeNode root, Map<Integer, Integer> map, int k) {
+        if (root == null || isFind) {
+            return;
+        }
+        orderSave(root.left, map, k);
+        Integer integer = map.get(k - root.val);
+        if (integer != null) {
+            isFind = true;
+            return;
+        }
+        map.put(root.val, root.val);
+        orderSave(root.right, map, k);
+    }
 
 }
