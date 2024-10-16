@@ -1,11 +1,10 @@
 package org.tries;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-public class LCR063 {
+public class LCR064 {
 
     public static class Trie {
 
@@ -64,49 +63,31 @@ public class LCR063 {
         /**
          * Returns if the word is in the trie.
          */
-        public String searchPrefix(String word) {
+        public boolean search(String word) {
             int len = word.length();
             Node cur = root;
-            String sb = "";
+            int modifyCount = 1;
             for (int i = 0; i < len; i++) {
                 char ch = word.charAt(i);
                 if (cur.isInChild(ch)) {
-                    sb += ch;
                     cur = cur.getNext(ch);
-                    if (cur.word) {
-                        return sb;
-                    }
                 } else {
-                    break;
+                    if (modifyCount == 0) {
+                        return false;
+                    }
+                    Set<Character> characters = cur.child.keySet();
+                    if(characters!=null) {
+                        modifyCount--;
+
+                    }
                 }
             }
-            return "";
+            return cur.word && modifyCount==0;
         }
     }
 
-    public String replaceWords(List<String> dictionary, String sentence) {
-        Trie trie = new Trie();
-        for (String s : dictionary) {
-            trie.insert(s);
-        }
-        StringBuilder sb = new StringBuilder();
-        String[] split = sentence.split(" ");
-        for (int i=0;i<split.length;i++) {
-            String s1 = trie.searchPrefix(split[i]);
-            if(s1.equals("")){
-                s1=split[i];
-            }
-            sb.append(s1);
-            if(i!=split.length-1){
-                sb.append(" ");
-            }
-        }
-        return sb.toString();
-    }
 
     public static void main(String[] args) {
-        LCR063 lcr063 = new LCR063();
-        String replaceWords = lcr063.replaceWords(Arrays.asList("cat", "bat", "rat"), "the cattle was rattled by the battery");
-        System.out.println(replaceWords);
+
     }
 }
