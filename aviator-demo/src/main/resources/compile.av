@@ -1,0 +1,17 @@
+let shoppingList = liveRoomShoppingBagsListToC(roomId, 1, 80);
+if (is_empty(shoppingList)) {
+  return 0;
+}
+
+let itemIds = seq.list();
+for ( x in shoppingList ){
+   seq.add(itemIds, x.goodsId.newItemId);
+}
+
+let flashBuyResult = executeService("GetItemIsFlashBuyById2BService","flashBuyResult",itemIds);
+
+if (flashBuyResult == nil) {
+  return 0;
+}
+
+return count(flashBuyResult.flashBuyIdList);
