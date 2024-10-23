@@ -74,13 +74,13 @@ public class LCR063 {
                     sb += ch;
                     cur = cur.getNext(ch);
                     if (cur.word) {
-                        break;
+                        return sb;
                     }
                 } else {
                     break;
                 }
             }
-            return sb;
+            return "";
         }
     }
 

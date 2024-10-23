@@ -1,14 +1,12 @@
 package org.tries;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class LCR064 {
 
-    public static class MagicDictionary {
+    public static class Trie {
 
         class Node {
             private boolean word;
@@ -34,28 +32,21 @@ public class LCR064 {
                 child.put(ch, node);
                 return node;
             }
-
-            public List<Node> getChilds() {
-                if (child == null) {
-                    return new ArrayList<>();
-                }
-                return new ArrayList<>(child.values());
-            }
         }
 
         private Node root;
 
-        public MagicDictionary() {
+        /**
+         * Initialize your data structure here.
+         */
+        public Trie() {
             root = new Node();
         }
 
-        public void buildDict(String[] dictionary) {
-            for (String dic : dictionary) {
-                insert(dic);
-            }
-        }
-
-        private void insert(String word) {
+        /**
+         * Inserts a word into the trie.
+         */
+        public void insert(String word) {
             int len = word.length();
             Node cur = root;
             for (int i = 0; i < len; i++) {
@@ -69,51 +60,34 @@ public class LCR064 {
             cur.word = true;
         }
 
-        public boolean search(String searchWord) {
-            return search(root, searchWord, 0, 0);
-        }
+        /**
+         * Returns if the word is in the trie.
+         */
+        public boolean search(String word) {
+            int len = word.length();
+            Node cur = root;
+            int modifyCount = 1;
+            for (int i = 0; i < len; i++) {
+                char ch = word.charAt(i);
+                if (cur.isInChild(ch)) {
+                    cur = cur.getNext(ch);
+                } else {
+                    if (modifyCount == 0) {
+                        return false;
+                    }
+                    Set<Character> characters = cur.child.keySet();
+                    if(characters!=null) {
+                        modifyCount--;
 
-        private boolean search(Node cur, String searchWord, int pos, int modifyCount) {
-            int len = searchWord.length();
-            if (pos == len && modifyCount == 1) {
-                return  cur.word;
-            }
-            if (pos == len) {
-                return false;
-            }
-            char ch = searchWord.charAt(pos);
-            if(cur.isInChild(ch)){
-                if(search(cur.getNext(ch),searchWord,pos+1,modifyCount)){
-                    return true;
-                }
-            }
-            Map<Character, Node> child = cur.child;
-            if (child == null || child.size() == 0) {
-                return false;
-            }
-            Set<Character> chs = child.keySet();
-            for (char character : chs) {
-                if (character != ch) {
-                    if(search(child.get(character),searchWord,pos+1,modifyCount+1)){
-                        return true;
                     }
                 }
             }
-            return false;
+            return cur.word && modifyCount==0;
         }
     }
 
-    //[[], [["hello","leetcode","hella"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]]
+
     public static void main(String[] args) {
-        MagicDictionary dictionary = new MagicDictionary();
-        dictionary.buildDict(new String[]{"hello", "leetcode", "hella"});
-        boolean hello1 = dictionary.search("hello");
-        System.out.println(hello1);
-        boolean hello2 = dictionary.search("hhllo");
-        System.out.println(hello2);
-        boolean hello3 = dictionary.search("hell");
-        System.out.println(hello3);
-        boolean hello4 = dictionary.search("leetcoded");
-        System.out.println(hello4);
+
     }
 }
