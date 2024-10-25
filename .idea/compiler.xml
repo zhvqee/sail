@@ -11,6 +11,7 @@
         <module name="thread-monitor" />
         <module name="aviator-demo" />
         <module name="jit-log" />
+        <module name="lucene-demo" />
         <module name="expression-engine" />
         <module name="byte-buddy" />
         <module name="algorithm" />

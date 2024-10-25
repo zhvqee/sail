@@ -5,5 +5,7 @@
     <file url="file://$PROJECT_DIR$/aviator-demo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/flink/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/flink/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lucene-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lucene-demo/src/main/resources" charset="UTF-8" />
   </component>
 </project>
