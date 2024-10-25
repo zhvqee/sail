@@ -1,12 +1,10 @@
 package org.tries;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class LCR064 {
 
-    public static class Trie {
+    public static class MagicDictionary {
 
         class Node {
             private boolean word;
@@ -32,6 +30,12 @@ public class LCR064 {
                 child.put(ch, node);
                 return node;
             }
+            public  List<Node> getChild(){
+                if(child==null){
+                    return  new ArrayList<>();
+                }
+                return new ArrayList<>(child.values());
+            }
         }
 
         private Node root;
@@ -39,8 +43,14 @@ public class LCR064 {
         /**
          * Initialize your data structure here.
          */
-        public Trie() {
+        public MagicDictionary() {
             root = new Node();
+        }
+
+        public void buildDict(String[] dictionary) {
+            for (String s : dictionary) {
+                insert(s);
+            }
         }
 
         /**
@@ -66,28 +76,53 @@ public class LCR064 {
         public boolean search(String word) {
             int len = word.length();
             Node cur = root;
-            int modifyCount = 1;
             for (int i = 0; i < len; i++) {
                 char ch = word.charAt(i);
                 if (cur.isInChild(ch)) {
                     cur = cur.getNext(ch);
                 } else {
-                    if (modifyCount == 0) {
+                    List<Node> values = cur.getChild();
+                    if (values != null) {
+                        for (Node value : values) {
+                            cur = value;
+                            if (searchAfter(cur, i + 1, word)) {
+                                return true;
+                            }
+                        }
                         return false;
-                    }
-                    Set<Character> characters = cur.child.keySet();
-                    if(characters!=null) {
-                        modifyCount--;
-
                     }
                 }
             }
-            return cur.word && modifyCount==0;
+            return false;
+        }
+
+        private boolean searchAfter(Node cur, int i, String word) {
+            int len = word.length();
+            for (; i < len; i++) {
+                char ch = word.charAt(i);
+                if (cur.isInChild(ch)) {
+                    cur = cur.getNext(ch);
+                } else {
+                    return false;
+                }
+
+            }
+            return cur.word;
         }
     }
 
 
     public static void main(String[] args) {
+        MagicDictionary magicDictionary = new MagicDictionary();
+        magicDictionary.buildDict(new String[]{"hello","hallo","leetcode"});
 
+        //inputs = [[], [["hello", "leetcode"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]]
+        //输出
+        //[null, null, false, true, false, false]
+        boolean hello = magicDictionary.search("hello");
+        boolean hello2 = magicDictionary.search("hhllo");
+        boolean hello3 = magicDictionary.search("hell");
+        boolean hello4 = magicDictionary.search("leetcoded");
+        System.out.println();
     }
 }

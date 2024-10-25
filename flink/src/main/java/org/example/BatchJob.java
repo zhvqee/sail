@@ -14,12 +14,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package org.example;
 
 import org.apache.flink.api.java.ExecutionEnvironment;
 
+*/
 /**
  * Skeleton for a Flink Batch Job.
  *
@@ -29,14 +31,16 @@ import org.apache.flink.api.java.ExecutionEnvironment;
  * <p>To package your application into a JAR file for execution,
  * change the main class in the POM.xml file to this class (simply search for 'mainClass')
  * and run 'mvn clean package' on the command line.
- */
+ *//*
+
 public class BatchJob {
 
 	public static void main(String[] args) throws Exception {
 		// set up the batch execution environment
 		final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-		/*
+		*/
+/*
 		 * Here, you can start creating your execution plan for Flink.
 		 *
 		 * Start with getting some data from the environment, like
@@ -58,9 +62,11 @@ public class BatchJob {
 		 *
 		 * http://flink.apache.org/docs/latest/apis/batch/examples.html
 		 *
-		 */
+		 *//*
+
 
 		// execute program
-		org.apache.flink.api.common.JobExecutionResult execute = env.execute("Flink Batch Java API Skeleton");
+	//	org.apache.flink.api.common.JobExecutionResult execute = env.execute("Flink Batch Java API Skeleton");
 	}
 }
+*/

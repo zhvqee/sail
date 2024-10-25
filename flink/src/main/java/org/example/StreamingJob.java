@@ -14,12 +14,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package org.example;
 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
+*/
 /**
  * Skeleton for a Flink Streaming Job.
  *
@@ -31,14 +33,16 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  *
  * <p>If you change the name of the main class (with the public static void main(String[] args))
  * method, change the respective entry in the POM.xml file (simply search for 'mainClass').
- */
+ *//*
+
 public class StreamingJob {
 
 	public static void main(String[] args) throws Exception {
 		// set up the streaming execution environment
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		/*
+		*/
+/*
 		 * Here, you can start creating your execution plan for Flink.
 		 *
 		 * Start with getting some data from the environment, like
@@ -56,9 +60,11 @@ public class StreamingJob {
 		 *
 		 * http://flink.apache.org/docs/latest/apis/streaming/index.html
 		 *
-		 */
+		 *//*
+
 
 		// execute program
 		env.execute("Flink Streaming Java API Skeleton");
 	}
 }
+*/
