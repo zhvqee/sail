@@ -1,0 +1,6 @@
+trie 树，前缀树
+fst , 有限状态机，解决后续无法共享问题
+hashmap 哈希map
+skiplist 跳表
+b+ B树
+ACtrie Double ARRAY TRIE

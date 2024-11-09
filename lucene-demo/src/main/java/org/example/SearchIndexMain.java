@@ -19,13 +19,14 @@ public class SearchIndexMain {
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
         Query query = new TermQuery(new Term("content", "laudantium"));
         TopDocs topDocs = indexSearcher.search(query, 1000);
-        long totalHits = topDocs.totalHits;
+        long totalHits = topDocs.totalHits.value;
         ScoreDoc[] scoreDocs = topDocs.scoreDocs;
         System.out.println(totalHits);
         for (ScoreDoc sc : scoreDocs) {
             System.out.println(sc);
 
         }
-
+        System.out.println();
+        TopDocs topDocs2 = indexSearcher.search(query, 1000);
     }
 }

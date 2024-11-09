@@ -24,20 +24,30 @@ public class BuildIndexMain {
 
         FSDirectory fsDirectory = FSDirectory.open(indexFile.toPath(), FSLockFactory.getDefault());
         IndexWriter indexWriter = new IndexWriter(fsDirectory, new IndexWriterConfig(new StandardAnalyzer()));
-        for (File file : files) {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] split = line.split(" ");
-                Document document = new Document();
-                document.add(new StringField("note_id", split[0], Field.Store.YES));
-                document.add(new TextField("content", split[1], Field.Store.YES));
-                indexWriter.addDocument(document);
+        for(int j=1;j<2;j++) {
+            for (File file : files) {
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line = null;
+                int i = 0;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] split = line.split(" ");
+                    Document document = new Document();
+                    // document.add(new StringField("note_id", split[0], Field.Store.YES));
+                    document.add(new TextField("content", "START" + split[1] + "end", Field.Store.YES));
+                    indexWriter.addDocument(document);
+                   // indexWriter.commit();
+                    //DEFAULT_MAX_BLOCK_SIZE
+                    // i 大于48时，才会产生一个新block ，才会有FST (至少2个block 才会有FST)
+               /* i++;
+                if (i > 48) {
+                    break;
+                }*/
+                }
+                bufferedReader.close();
             }
-            bufferedReader.close();
         }
-        indexWriter.flush();
+        //indexWriter.flush();
         indexWriter.close();
 
     }
