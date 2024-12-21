@@ -16,6 +16,8 @@
         <option value="$PROJECT_DIR$/lucene-demo/pom.xml" />
         <option value="$PROJECT_DIR$/search-architecture/pom.xml" />
         <option value="$PROJECT_DIR$/method-handle/pom.xml" />
+        <option value="$PROJECT_DIR$/jflex/pom.xml" />
+        <option value="$PROJECT_DIR$/kafka/pom.xml" />
       </list>
     </option>
   </component>

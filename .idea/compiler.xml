@@ -6,16 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="jflex" />
+        <module name="lucene-demo" />
+        <module name="method-handle" />
+        <module name="expression-engine" />
+        <module name="search-architecture" />
         <module name="sliding-window" />
         <module name="flink" />
         <module name="thread-monitor" />
         <module name="aviator-demo" />
         <module name="jit-log" />
-        <module name="lucene-demo" />
-        <module name="method-handle" />
-        <module name="expression-engine" />
+        <module name="kafka" />
         <module name="byte-buddy" />
-        <module name="search-architecture" />
         <module name="algorithm" />
       </profile>
     </annotationProcessing>

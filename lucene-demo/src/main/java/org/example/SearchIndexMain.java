@@ -8,6 +8,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.WildcardQuery;
 import org.apache.lucene.store.FSDirectory;
 
 import java.io.IOException;
@@ -26,7 +27,15 @@ public class SearchIndexMain {
             System.out.println(sc);
 
         }
-        System.out.println();
-        TopDocs topDocs2 = indexSearcher.search(query, 1000);
+
+        WildcardQuery wildcardQuery = new WildcardQuery(new Term("content", "lau*um"));
+        TopDocs topDocs1 = indexSearcher.search(wildcardQuery, 1000);
+        long totalHits1 = topDocs.totalHits.value;
+        ScoreDoc[] scoreDocs1 = topDocs.scoreDocs;
+        System.out.println(totalHits1);
+        for (ScoreDoc sc : scoreDocs1) {
+            System.out.println(sc);
+
+        }
     }
 }

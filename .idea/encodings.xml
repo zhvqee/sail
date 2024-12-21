@@ -5,6 +5,11 @@
     <file url="file://$PROJECT_DIR$/aviator-demo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/flink/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/flink/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jflex/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jflex/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jflex/target/generated-sources/jflex" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lucene-demo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lucene-demo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/method-handle/src/main/java" charset="UTF-8" />

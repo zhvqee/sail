@@ -1,0 +1,37 @@
+<configuration>
+
+
+
+    <!-- ConsoleAppender: 将日志输出到标准输出控制台 -->
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 使用 PatternLayout 来格式化日志输出 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件日志 -->
+    <appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+        <!-- 日志输出文件路径 -->
+        <file>logs/app.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 针对特定的包或类进行日志配置 -->
+    <logger name="com.example" level="DEBUG">
+        <!-- 可以将DEBUG日志输出到文件 -->
+        <appender-ref ref="FileAppender"/>
+    </logger>
+
+    <logger name="org.apache.flink" level="INFO" />
+
+    <!-- 定义日志级别的适用范围，根级别为INFO，适用于所有未被单独配置的Logger -->
+    <root level="INFO">
+        <!-- ConsoleAppender 将日志输出到控制台 -->
+        <appender-ref ref="ConsoleAppender"/>
+    </root>
+
+</configuration>
