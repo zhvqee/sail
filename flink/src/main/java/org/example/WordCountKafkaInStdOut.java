@@ -4,6 +4,8 @@ import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -19,9 +21,13 @@ import java.util.Properties;
 public class WordCountKafkaInStdOut {
 
     public static void main(String[] args) throws Exception {
-        final StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
-        executionEnvironment.setMaxParallelism(1);
-        executionEnvironment.setParallelism(1);
+
+        Configuration configuration = new Configuration();
+        configuration.setInteger(RestOptions.PORT,8082);
+        final StreamExecutionEnvironment executionEnvironment =StreamExecutionEnvironment.createLocalEnvironment(2,configuration);
+      //  final StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
+        executionEnvironment.setMaxParallelism(2);
+        executionEnvironment.setParallelism(2);
         Properties properties = new Properties();
         properties.put("bootstrap.servers", "127.0.0.1:9094");
         String topic = "test_topic";
@@ -47,7 +53,7 @@ public class WordCountKafkaInStdOut {
                 .timeWindow(Time.seconds(5))
                 .sum(1);
 
-        wordCount.print();
+        wordCount.print().setParallelism(1);
         JobExecutionResult execute = executionEnvironment.execute("WordCountKafkaInStdOut");
         System.out.println(execute.toString());
     }
